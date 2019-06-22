@@ -1,0 +1,8 @@
+*.hex
+*.bin
+*.elf
+*.map
+*.o
+*.exe
+*.out
+*.pyc
