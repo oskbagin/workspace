@@ -1,15 +1,15 @@
-import requests
 import time
 from btc_price_getter import BtcPriceGetter
+from usd_to_pln import usdToPlnConverter
 
 btc = BtcPriceGetter()
 
 print("""
     BTC-USD Prizes:\n
-    Now:             Press 1
-    Today's average: Press 2
-    Convert to USD:  Press 3
-    Quit:            Press q
+    Now:                Press 1
+    Today's average:    Press 2
+    Convert to USD/PLN: Press 3
+    Quit:               Press q
 """)
 
 choice = ''
@@ -25,5 +25,8 @@ while choice.lower() != 'q':
         amount = float(input())
         value = amount * btc.priceNow()
         print('It is ' + str(value) + ' USD')
+        pln = usdToPlnConverter()
+
+        print('Converts to ' + str(pln.convert(value)) + ' PLN')
     else:
         pass

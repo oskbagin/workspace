@@ -6,3 +6,4 @@
 *.exe
 *.out
 *.pyc
+*.ob
