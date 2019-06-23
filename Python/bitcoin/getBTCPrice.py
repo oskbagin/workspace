@@ -1,12 +1,11 @@
 import requests
 import time
+from btc_price_getter import BtcPriceGetter
 
-btc_api_url = 'https://api.coinmarketcap.com/v1/ticker/bitcoin/'
+btc_api_url_day = 'https://apiv2.bitcoinaverage.com/indices/global/history/BTCUSD?period=daily&format=json'
+btc_api_url_month = 'https://apiv2.bitcoinaverage.com/indices/global/history/BTCUSD?period=monthly&format=json'
+btc_api_url_alltime = 'https://apiv2.bitcoinaverage.com/indices/global/history/BTCUSD?period=alltime&format=json'
 
-i = 0
-while i < 10:
-    response = requests.get(btc_api_url)
-    response_json = response.json()
+tmp = BtcPriceGetter()
 
-    print(response_json[0]['price_usd'])
-    time.sleep(2)
+print(tmp.priceNow())
