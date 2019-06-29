@@ -1,23 +1,20 @@
 import requests
 import sys
+from btc_ob_api.get_api_ob_entries import getApiObEntries, API_OB_TOKEN_NOT_IN_FILE
 
 class usdToPlnConverter:
     def __init__(self):
         currencyApiUrl = ''
-        token = 'currencyApi:='
-        usdToken = '?base=USD'
+        keyToken = 'currencyApi'
+        usdBase = '?base=USD'
 
-        with open('../../../api.ob') as file:
-            fileContent = file.readlines()
-            for line in fileContent:
-                if token in line:
-                    currencyApiUrl = line[len(token):-1]
-                    break
-        if currencyApiUrl == '':
-            print('Something went wrong with the API while converting USD to PLN. Aborting...')
+        currencyApiUrl = getApiObEntries().getEntry(keyToken)
+        
+        if currencyApiUrl == API_OB_TOKEN_NOT_IN_FILE:
+            print('API URL not set in the config file. Aborting...')
             sys.exit(1)
         else:
-            self.usdUrl = currencyApiUrl + usdToken
+            self.usdUrl = currencyApiUrl + usdBase
             self.json = requests.get(self.usdUrl).json()
             self.usdToPln = float(self.json['rates']['PLN'])
 

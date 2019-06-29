@@ -6,7 +6,7 @@ API_OB_TOKEN_NOT_IN_FILE = 'TOKEN NOT FOUND'
 class getApiObEntries:
     def __init__(self):
         # The API requires to have api.ob file in home directory(assuming the repo was cloned to the home as well)
-        self.file = '../../../../api.ob'
+        self.file = '../../../api.ob'
         try:
             with open(self.file) as file:
                 self.apiObEntries = file.readlines()

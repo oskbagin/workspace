@@ -1,7 +1,6 @@
 import requests
 import sys
-sys.path.append('..')
-from btc_ob_api.get_api_ob_entries import getApiObEntries, API_OB_TOKEN_NOT_IN_FILE
+from get_api_ob_entries import getApiObEntries, API_OB_TOKEN_NOT_IN_FILE
 
 class iftttNotification:
     def __init__(self):
@@ -19,5 +18,3 @@ class iftttNotification:
     
     def iftttBtcPriceNotify(self):
         requests.post(self.postUrl)
-
-tmp = iftttNotification()
