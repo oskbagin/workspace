@@ -7,7 +7,7 @@ class usdToPlnConverter:
         token = 'currencyApi:='
         usdToken = '?base=USD'
 
-        with open('api.ob') as file:
+        with open('../../../api.ob') as file:
             fileContent = file.readlines()
             for line in fileContent:
                 if token in line:
