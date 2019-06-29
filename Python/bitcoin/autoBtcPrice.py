@@ -1,6 +1,6 @@
 import time
-from btc_price_getter import BtcPriceGetter
-from usd_to_pln import usdToPlnConverter
+from btc_ob_api.btc_price_getter import BtcPriceGetter
+from btc_ob_api.usd_to_pln import usdToPlnConverter
 
 btc = BtcPriceGetter()
 pln = usdToPlnConverter()
