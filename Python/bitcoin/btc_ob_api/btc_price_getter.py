@@ -1,4 +1,6 @@
 import requests
+from btc_ob_api.get_api_ob_entries import getApiObEntries
+from btc_ob_api.usd_to_pln import usdToPlnConverter
 
 class BtcPriceGetter:
     def __init__(self, period=''):
@@ -9,6 +11,7 @@ class BtcPriceGetter:
         self.url = ''
         self.response = ''
         self.json = ''
+        self.amount = getApiObEntries().getEntryFloat('btcAmount')
     
     def btcGet(self):
         self.response = requests.get(self.url)
@@ -37,3 +40,6 @@ class BtcPriceGetter:
 
         return average
 
+    def getPlnPrice(self):
+        plnUsd = usdToPlnConverter()
+        return plnUsd.convert(self.priceNow() * self.amount)

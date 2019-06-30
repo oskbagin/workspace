@@ -11,7 +11,7 @@ class usdToPlnConverter:
         currencyApiUrl = getApiObEntries().getEntry(keyToken)
         
         if currencyApiUrl == API_OB_TOKEN_NOT_IN_FILE:
-            print('API URL not set in the config file. Aborting...')
+            print('Fatal: USD-PLN API URL not set in the config file. Aborting...')
             sys.exit(1)
         else:
             self.usdUrl = currencyApiUrl + usdBase
