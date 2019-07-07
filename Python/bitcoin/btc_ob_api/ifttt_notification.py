@@ -23,10 +23,10 @@ class iftttNotification:
                 sys.exit(2)
             else:
                 self.postUrl = 'https://maker.ifttt.com/trigger/btc-price/with/key/' + iftttKey
-    
+
     def btcPriceNotify(self, btcPlnPrice):
         if btcPlnPrice < self.btcThresholdLow:
             requests.post(self.postUrl)
-        
+
         if btcPlnPrice > self.btcThresholdHigh:
             requests.post(self.postUrl)
