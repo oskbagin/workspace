@@ -3,8 +3,12 @@
 *.elf
 *.map
 *.o
+*.out
 *.exe
 *.out
+*.swp
 *.pyc
 *.ob
 */__pycache__
+*/.vscode/
+*.ipch
