@@ -59,9 +59,13 @@ int main(void)
         }
 
         /* Do the RW here. */
+        u8 rcvCnt = 0;
         uint8_t rcvBuf[SIZE_1KB] = {0};
-        read(connectFD, rcvBuf, SIZE_1KB);
-        printf("%s\n", rcvBuf);
+        while(++rcvCnt < 20)
+        {
+            read(connectFD, rcvBuf, SIZE_1KB);
+            printf("%s\n", rcvBuf);
+        }
 
         ret = shutdown(connectFD, SHUT_RDWR);
         if (ret < 0)

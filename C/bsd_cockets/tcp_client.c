@@ -14,21 +14,23 @@
 
 int main(void)
 {
-    struct sockaddr_in sa = {0};
-    int res, err, socketFD;
+    struct sockaddr_in sa, cli;
+    int res, socketFD, err;
 
-    socketFD = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
+    socketFD = socket(AF_INET, SOCK_STREAM, 0);
     if (socketFD == -1)
     {
         perror("Cannot create a socket");
         exit(EXIT_FAILURE);
     }
 
+    memset(&sa, 0, sizeof(sa));
+
     sa.sin_family = AF_INET;
     sa.sin_port = htons(PORT);
-    res = inet_pton(AF_INET, IP_ADDR, &sa.sin_addr);
+    sa.sin_addr.s_addr = inet_addr(IP_ADDR);
 
-    err = connect(socketFD, (struct sockaddr*)&sa, sizeof(sa) == -1);
+    err = connect(socketFD, (struct sockaddr*)&sa, sizeof(sa));
 
     if(err == -1)
     {
@@ -37,11 +39,15 @@ int main(void)
         exit(EXIT_FAILURE);
     }
 
+    u8 tcp_msg[SIZE_1KB], i = 0;
     /* Socket RW here. */
-    u8 tcp_msg[] = "Hello TCP world!";
-    write(err, tcp_msg, strlen(tcp_msg));
-
-    shutdown(socketFD, SHUT_RDWR);
+    while(++i < 20)
+    {
+        sprintf(tcp_msg, "%d) Hello TCP world!", i);
+        write(socketFD, tcp_msg, strlen(tcp_msg));
+        memset(tcp_msg, 0, SIZE_1KB);
+        sleep(1);
+    }
 
     close(socketFD);
     return EXIT_SUCCESS;
