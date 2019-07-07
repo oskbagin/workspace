@@ -59,6 +59,9 @@ int main(void)
         }
 
         /* Do the RW here. */
+        uint8_t rcvBuf[SIZE_1KB] = {0};
+        read(connectFD, rcvBuf, SIZE_1KB);
+        printf("%s\n", rcvBuf);
 
         ret = shutdown(connectFD, SHUT_RDWR);
         if (ret < 0)
@@ -68,7 +71,9 @@ int main(void)
             close(socketFD);
             exit(EXIT_FAILURE);
         }
+        close(connectFD);
     }
 
-    return 0;
+    close(socketFD);
+    return EXIT_SUCCESS;
 }
