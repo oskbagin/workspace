@@ -13,17 +13,13 @@ class rgbDataGen:
         self.g = []
         self.b = []
 
-    def genSinData(self, shifts=[0, 1/3, 2/3]):
+    def genSinData(self, shifts=[0, 1/3, 2/3], ranges = 3):
         self.reset()
         i=0
 
-        #r_shift = 0
-        #g_shift = m.pi/3
-        #b_shift = 2 * m.pi/3
         shifts = [shift * m.pi for shift in shifts]
-        print(shifts)
 
-        numberOf2PiRanges = 3
+        numberOf2PiRanges = ranges
         loopCounts = 100
         step = 2 * m.pi / loopCounts
 
@@ -32,7 +28,7 @@ class rgbDataGen:
             rad = i * step
 
             self.t.append(rad)
-            self.r.append(m.sin(rad + shifts[0]))
-            self.g.append(m.sin(rad + shifts[1]))
-            self.b.append(m.sin(rad + shifts[2]))
+            self.r.append(127 + 127 * m.sin(rad + shifts[0]))
+            self.g.append(127 + 127 * m.sin(rad + shifts[1]))
+            self.b.append(127 + 127 * m.sin(rad + shifts[2]))
         return [self.t, self.r, self.g, self.b]
