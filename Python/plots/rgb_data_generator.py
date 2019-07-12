@@ -28,7 +28,7 @@ class rgbDataGen:
             rad = i * step
 
             self.t.append(rad)
-            self.r.append(127 + 127 * m.sin(rad + shifts[0]))
-            self.g.append(127 + 127 * m.sin(rad + shifts[1]))
-            self.b.append(127 + 127 * m.sin(rad + shifts[2]))
+            self.r.append(0.5 * (1 + m.sin(rad + shifts[0])))
+            self.g.append(0.5 * (1 + m.sin(rad + shifts[1])))
+            self.b.append(0.5 * (1 + m.sin(rad + shifts[2])))
         return [self.t, self.r, self.g, self.b]
