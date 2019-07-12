@@ -1,35 +1,19 @@
 from matplotlib import pyplot as plt
+from rgb_data_generator import rgbDataGen as rgbgen
 import math as m
 
-i=0
+def rgbPlot(rawRGB, title):
+    t = rawRGB[0]
 
-r = []
-g = []
-b = []
-t = []
+    plt.figure(num=None, figsize=(15,6), dpi=80)
+    plt.title(title)
+    plt.plot(t, rawRGB[1], 'r-')
+    plt.plot(t, rawRGB[2], 'g-')
+    plt.plot(t, rawRGB[3], 'b-')
+    plt.grid(True)
 
-r_shift = 0
-g_shift = m.pi/3
-b_shift = 2 * m.pi/3
+    plt.show()    
 
-numberOf2PiRanges = 3
-loopCounts = 100
-step = 2 * m.pi / loopCounts
+rgb = rgbgen()
 
-while i < loopCounts * numberOf2PiRanges:
-    i += 1
-    rad = i * step
-
-    t.append(rad)
-    r.append(m.sin(rad + r_shift))
-    g.append(m.sin(rad + g_shift))
-    b.append(m.sin(rad + b_shift))
-
-plt.figure(num=None, figsize=(15,6), dpi=80)
-
-plt.plot(t, r)
-plt.plot(t, g)
-plt.plot(t, b)
-plt.grid(True)
-
-plt.show()
+rgbPlot(rgb.genSinData(), 'sin')
