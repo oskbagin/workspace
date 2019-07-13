@@ -61,6 +61,7 @@ class rgbDataGen:
 
         # can assert params
         i = 0
+        tAppend = 0
         cycles = 6
         cycleDur = steps / cycles
         derivative = 1 / cycleDur
@@ -77,15 +78,41 @@ class rgbDataGen:
                 self.r.append((i % cycleDur) * derivative)
                 self.g.append(1)
                 self.b.append(1)
-            else:
-                break
-            # elif zone == 1:
-            #     self.r.append(i * slope)
-            #     self.g.append(1)
-            #     self.b.append(i * slope)
+            elif currCycle == 2:
+                self.r.append(1)
+                self.g.append(1 - (i % cycleDur) * derivative)
+                self.b.append(1)
+            elif currCycle == 3:
+                self.r.append(1)
+                self.g.append(0)
+                self.b.append(1 - (i % cycleDur) * derivative)
+            elif currCycle == 4:
+                self.r.append(1 - (i % cycleDur) * derivative)
+                self.g.append(0)
+                self.b.append(0)
+            elif currCycle == 5:
+                self.r.append(0)
+                self.g.append((i % cycleDur) * derivative)
+                self.b.append(0)
             
             self.t.append(i)
             i += 1
 
+        while tAppend > 0:
+            self.t.append(i)
+            i += 1
+            tAppend -= 1
+
         return [self.t, self.r, self.g, self.b]
 
+    def haldStateForNCycles(self, nSamples):
+        cnt = 0
+        while cnt < nSamples:
+            self.r.append(self.r[-1])
+            self.g.append(self.g[-1])
+            self.b.append(self.b[-1])
+
+            cnt += 1
+        
+        # number of samples to append to self.t
+        return cnt
