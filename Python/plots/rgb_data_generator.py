@@ -20,7 +20,7 @@ class rgbDataGen:
         shifts = [shift * m.pi for shift in shifts]
 
         numberOf2PiRanges = ranges
-        loopCounts = 100
+        loopCounts = 300
         step = 2 * m.pi / loopCounts
 
         while i < loopCounts * numberOf2PiRanges:
