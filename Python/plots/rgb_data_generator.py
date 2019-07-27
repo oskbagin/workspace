@@ -44,9 +44,12 @@ class rgbDataGen:
         while i < loopCounts * numberOf2PiRanges:
             rad = i * self.step
 
-            curr_r = 0.5 * (1 + m.sin(rad + shifts[0]))
-            curr_g = 0.5 * (1 + m.sin(rad + shifts[1]))
-            curr_b = 0.5 * (1 + m.sin(rad + shifts[2]))
+            # curr_r = 0.5 * (1 + m.sin(rad + shifts[0]))
+            # curr_g = 0.5 * (1 + m.sin(rad + shifts[1]))
+            # curr_b = 0.5 * (1 + m.sin(rad + shifts[2]))
+            curr_r = (m.sin(rad + shifts[0]))
+            curr_g = (m.sin(rad + shifts[1]))
+            curr_b = (m.sin(rad + shifts[2]))
 
             self.t.append(rad)
             self.r.append(curr_r)

@@ -16,6 +16,6 @@ def rgbPlot(rawRGB, title):
 
 rgb = rgbgen()
 
-#rgbPlot(rgb.genSinData(shifts=[0, 2/3, 4/3], ranges = 1), 'sin')
+rgbPlot(rgb.genSinData(shifts=[0, 2/3, 4/3], ranges = 1), 'sin')
 #rgbPlot(rgb.genSinWithPausesData(), 'sin_paused')
 rgbPlot(rgb.genTriangle(), 'triangle')
