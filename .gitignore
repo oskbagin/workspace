@@ -9,6 +9,7 @@
 *.swp
 *.pyc
 *.ob
+*.png
 */__pycache__
 .vscode/
 *.ipch
