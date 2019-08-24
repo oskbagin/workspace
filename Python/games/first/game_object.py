@@ -1,23 +1,20 @@
 import pygame
 
-class gameCanvas:
-    def __init__(self, width, height, bgndImg):
-        self.width = width
-        self.height = height
-        self.backgroundImage = bgndImg
-
 # Return true on edge hit, false otherwise
-def detectGameObjectHittingCanvasBorder(gameObject, gameEvt):
+def detectGameObjectHittingCanvasBorder(gameObject, gameEvt, gameScreen):
     borderHit = False
     if gameEvt.key == 273:
         if gameObject.y <= 0:
+            borderHit = True
+    elif gameEvt.key == 274:
+        if gameObject.y >= gameScreen.height - gameObject.size_y:
             borderHit = True
 
     return borderHit
 
 class gameObjectClass:
     # init method
-    def __init__(self, image, startx = 0, starty = 0, isMovable = False):
+    def __init__(self, image, size_x, size_y, startx = 0, starty = 0, isMovable = False):
         self.image = image
         # position info
         self.x = startx
@@ -25,6 +22,8 @@ class gameObjectClass:
         # velocity and movement info
         self.step_x = 10
         self.step_y = 10
+        self.size_x = size_x
+        self.size_y = size_y
         self.movable = isMovable
     
     # drawing methods
@@ -34,28 +33,19 @@ class gameObjectClass:
     def getXYTuple(self):
         return (self.x, self.y)
     
-    def drawMe(self, screen):
-        screen.blit(self.image, self.getXYTuple())
-
     # movement methods
-    def moveUp(self, gameEvt):
-        borderHit = detectGameObjectHittingCanvasBorder(self, gameEvt)
+    def moveUp(self, gameEvt, gameScreen):
+        borderHit = detectGameObjectHittingCanvasBorder(self, gameEvt, gameScreen)
         # TODO bounce of the edge if hit
         if borderHit is False:
             self.y -= self.step_y
         else:
             self.y += self.step_y
 
-
-# just a dummy function to test
-def dummy(facey):
-    global step_x
-    global step_y
-    if facey.x > 1280 - 64 or facey.x < 0:
-        step_x *= -1
-    if facey.y > 1024 - 64 or facey.y < 0:
-        step_y *= -1
-    facey.x += step_x
-    facey.y += step_y
-
+    def moveDown(self, gameEvt, gameScreen):
+        borderHit = detectGameObjectHittingCanvasBorder(self, gameEvt, gameScreen)
+        if borderHit is False:
+            self.y += self.step_y
+        else:
+            self.y -= self.step_y
 
