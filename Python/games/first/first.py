@@ -2,6 +2,7 @@ import pygame
 import sys
 import logging
 from game_object import gameObjectClass
+from game_background import gameCanvasClass, gameWindow
 
 step_x = 10
 step_y = 10
@@ -20,6 +21,8 @@ def main():
     logo = pygame.image.load('files/logo32x32.png')
     pygame.display.set_icon(logo)
     pygame.display.set_caption('minimal program')
+    
+
     image = pygame.image.load('files/intro_ball.gif')
 
     emojiObject = gameObjectClass(image, 50, 50, True)
@@ -40,21 +43,14 @@ def main():
             # TODO: check the event types in docs:
             if event.type == pygame.QUIT:
                 running = False
-            if event.type == pygame.KEYUP:
-                if emojiObject.y > 0:
-                    emojiObject.y -= 10
-                    screen.blit(background, (0, 0))
-                    screen.blit(emojiObject.getImage(), emojiObject.getXYTuple())
-                    pygame.display.flip()
-                else:
-                    # bounce off
-                    screen.blit(background, (0, 0))
-                    screen.blit(emojiObject.getImage(), (emojiObject.x, 20))
-                    pygame.display.flip()
-
-                    screen.blit(background, (0, 0))
-                    screen.blit(emojiObject.getImage(), emojiObject.getXYTuple())
-                    pygame.display.flip()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == 273:
+                    emojiObject.moveUp(event)
+                screen.blit(background, (0, 0))
+                screen.blit(emojiObject.getImage(), emojiObject.getXYTuple())
+                pygame.display.flip()
+            else:
+                pass
 
 if __name__ == "__main__":
     # call the main function:

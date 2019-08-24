@@ -1,8 +1,19 @@
 import pygame
 
+class gameCanvas:
+    def __init__(self, width, height, bgndImg):
+        self.width = width
+        self.height = height
+        self.backgroundImage = bgndImg
+
 # Return true on edge hit, false otherwise
-def detectGameObjectHittingEdges(gameObject, gameCanvas):
-    if gameObject.x < 
+def detectGameObjectHittingCanvasBorder(gameObject, gameEvt):
+    borderHit = False
+    if gameEvt.key == 273:
+        if gameObject.y <= 0:
+            borderHit = True
+
+    return borderHit
 
 class gameObjectClass:
     # init method
@@ -27,8 +38,14 @@ class gameObjectClass:
         screen.blit(self.image, self.getXYTuple())
 
     # movement methods
-    def moveUp(self, step):
-        detectEdges(self)
+    def moveUp(self, gameEvt):
+        borderHit = detectGameObjectHittingCanvasBorder(self, gameEvt)
+        # TODO bounce of the edge if hit
+        if borderHit is False:
+            self.y -= self.step_y
+        else:
+            self.y += self.step_y
+
 
 # just a dummy function to test
 def dummy(facey):
