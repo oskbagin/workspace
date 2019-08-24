@@ -9,6 +9,13 @@ def detectGameObjectHittingCanvasBorder(gameObject, gameEvt, gameScreen):
     elif gameEvt.key == 274:
         if gameObject.y >= gameScreen.height - gameObject.size_y:
             borderHit = True
+    elif gameEvt.key == 275:
+        if gameObject.x >= gameScreen.width - gameObject.size_x:
+            borderHit = True
+    elif gameEvt.key == 276:
+        if gameObject.x <= 0:
+            borderHit = True
+    
 
     return borderHit
 
@@ -49,3 +56,16 @@ class gameObjectClass:
         else:
             self.y -= self.step_y
 
+    def moveLeft(self, gameEvt, gameScreen):
+        borderHit = detectGameObjectHittingCanvasBorder(self, gameEvt, gameScreen)
+        if borderHit is False:
+            self.x -= self.step_x
+        else:
+            self.x += self.step_x
+
+    def moveRight(self, gameEvt, gameScreen):
+        borderHit = detectGameObjectHittingCanvasBorder(self, gameEvt, gameScreen)
+        if borderHit is False:
+            self.x += self.step_x
+        else:
+            self.x -= self.step_x

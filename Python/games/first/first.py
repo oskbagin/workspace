@@ -21,6 +21,7 @@ def main():
 
     running = True
 
+# to detect pressed button hold poll for keyup event in other function
     while running:
         # handles all events:
         for event in pygame.event.get():
@@ -31,9 +32,16 @@ def main():
                 # case UP
                 if event.key == 273:
                     emojiObject.moveUp(event, screen)
-                #case DOWN
+                # case DOWN
                 elif event.key == 274:
                     emojiObject.moveDown(event, screen)
+                # case RIGHT
+                elif event.key == 275:
+                    emojiObject.moveRight(event, screen)
+                # case LEFT
+                elif event.key == 276:
+                    emojiObject.moveLeft(event, screen)
+
                 screen.drawBackground()
                 screen.drawObject(emojiObject)
             else:
