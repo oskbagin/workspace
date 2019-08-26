@@ -32,12 +32,9 @@ def main():
                 if event.type == pygame.QUIT:
                     running = False
                 elif event.type == pygame.KEYDOWN:
-                    innerEvents = getEvents()
-                    while innerEvents == [] and pygame.KEYUP not in innerEvents:
-                        emojiObject.moveMe(event, screen)
-                        screen.drawBackground()
-                        screen.drawObject(emojiObject)
-                        innerEvents = getEvents()
+                    emojiObject.moveMe(event, screen)
+                    screen.drawBackground()
+                    screen.drawObject(emojiObject)
                 else:
                     pass
         except KeyboardInterrupt:
