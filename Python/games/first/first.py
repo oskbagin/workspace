@@ -5,9 +5,6 @@ from game_object import gameObjectClass
 from game_background import gameCanvasClass, gameWindow
 from game_init import gameInit
 
-step_x = 10
-step_y = 10
-
 getEvents = pygame.event.get
 
 def main():
