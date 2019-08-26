@@ -15,7 +15,6 @@ def detectGameObjectHittingCanvasBorder(gameObject, gameEvt, gameScreen):
     elif gameEvt.key == 276:
         if gameObject.x <= 0:
             borderHit = True
-    
 
     return borderHit
 
@@ -41,30 +40,40 @@ class gameObjectClass:
         return (self.x, self.y)
     
     # movement methods
-    def moveUp(self, gameEvt, gameScreen):
+    def moveMe(self, gameEvt, gameScreen):
         borderHit = detectGameObjectHittingCanvasBorder(self, gameEvt, gameScreen)
-        # TODO bounce of the edge if hit
+        # case UP
+        if gameEvt.key == 273:
+            self.moveUp(gameEvt, gameScreen, borderHit)
+        # case DOWN
+        elif gameEvt.key == 274:
+            self.moveDown(gameEvt, gameScreen, borderHit)
+        # case RIGHT
+        elif gameEvt.key == 275:
+            self.moveRight(gameEvt, gameScreen, borderHit)
+        # case LEFT
+        elif gameEvt.key == 276:
+            self.moveLeft(gameEvt, gameScreen, borderHit)
+
+    def moveUp(self, gameEvt, gameScreen, borderHit):
         if borderHit is False:
             self.y -= self.step_y
         else:
             self.y += self.step_y
 
-    def moveDown(self, gameEvt, gameScreen):
-        borderHit = detectGameObjectHittingCanvasBorder(self, gameEvt, gameScreen)
+    def moveDown(self, gameEvt, gameScreen, borderHit):
         if borderHit is False:
             self.y += self.step_y
         else:
             self.y -= self.step_y
 
-    def moveLeft(self, gameEvt, gameScreen):
-        borderHit = detectGameObjectHittingCanvasBorder(self, gameEvt, gameScreen)
+    def moveLeft(self, gameEvt, gameScreen, borderHit):
         if borderHit is False:
             self.x -= self.step_x
         else:
             self.x += self.step_x
 
-    def moveRight(self, gameEvt, gameScreen):
-        borderHit = detectGameObjectHittingCanvasBorder(self, gameEvt, gameScreen)
+    def moveRight(self, gameEvt, gameScreen, borderHit):
         if borderHit is False:
             self.x += self.step_x
         else:
