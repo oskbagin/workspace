@@ -8,6 +8,8 @@ from game_init import gameInit
 step_x = 10
 step_y = 10
 
+getEvents = pygame.event.get
+
 def main():
     gameInit()
 
@@ -25,7 +27,7 @@ def main():
     while running:
         try:
             # handles all events:
-            events = pygame.event.get()
+            events = getEvents()
             if events != []:
                 print(events)
             for event in events:
@@ -33,9 +35,10 @@ def main():
                 if event.type == pygame.QUIT:
                     running = False
                 elif event.type == pygame.KEYDOWN:
-                    emojiObject.moveMe(event, screen)
-                    screen.drawBackground()
-                    screen.drawObject(emojiObject)
+                    while getEvents() == []:
+                        emojiObject.moveMe(event, screen)
+                        screen.drawBackground()
+                        screen.drawObject(emojiObject)
                 else:
                     pass
         except KeyboardInterrupt:
