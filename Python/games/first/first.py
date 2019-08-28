@@ -29,12 +29,20 @@ def main():
                 print(events)
             for event in events:
                 # TODO: check the event types in docs:
-                if event.type == pygame.QUIT:
+                if event.type is pygame.QUIT:
                     running = False
-                elif event.type == pygame.KEYDOWN:
-                    emojiObject.moveMe(event, screen)
-                    screen.drawBackground()
-                    screen.drawObject(emojiObject)
+                elif event.type is pygame.KEYDOWN:
+                    if event.key is 113:
+                        #running = False
+                        # post event?
+                        quitEvent = pygame.event.Event(pygame.QUIT)
+                        pygame.event.post(quitEvent)
+                    else:
+                        emojiObject.moveMe(event, screen)
+                        screen.drawBackground()
+                        screen.drawObject(emojiObject)
+                elif event.type == pygame.KEYUP:
+                    print('up')
                 else:
                     pass
         except KeyboardInterrupt:
