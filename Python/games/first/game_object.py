@@ -48,6 +48,9 @@ class gameObjectClass:
     
     # movement methods
     def moveMe(self, gameEvt, gameScreen):
+        if self.movable is False:
+            return
+
         borderHit = detectGameObjectHittingCanvasBorder(self, gameEvt, gameScreen)
         # case UP
         if gameEvt.key == arrows['up']:
