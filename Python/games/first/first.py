@@ -6,6 +6,7 @@ from game_background import gameCanvasClass, gameWindow
 from game_init import gameInit
 
 getEvents = pygame.event.get
+peekEvents = pygame.event.peek
 
 def main():
     gameInit()
@@ -36,9 +37,12 @@ def main():
                         quitEvent = pygame.event.Event(pygame.QUIT)
                         pygame.event.post(quitEvent)
                     else:
-                        emojiObject.moveMe(event, screen)
-                        screen.drawBackground()
-                        screen.drawObject(emojiObject)
+                        innerEvents = []
+                        while innerEvents == [] and pygame.KEYUP not in innerEvents:
+                            emojiObject.moveMe(event, screen)
+                            screen.drawBackground()
+                            screen.drawObject(emojiObject)
+                            innerEvents = getEvents()
                 elif event.type == pygame.KEYUP:
                     print('up')
                 else:
