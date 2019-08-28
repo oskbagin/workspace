@@ -1,5 +1,12 @@
 import pygame
 
+arrows = {
+        'up' : 273,
+        'down' : 274,
+        'right' : 275,
+        'left' : 276
+}
+
 # Return true on edge hit, false otherwise
 def detectGameObjectHittingCanvasBorder(gameObject, gameEvt, gameScreen):
     borderHit = False
@@ -43,16 +50,16 @@ class gameObjectClass:
     def moveMe(self, gameEvt, gameScreen):
         borderHit = detectGameObjectHittingCanvasBorder(self, gameEvt, gameScreen)
         # case UP
-        if gameEvt.key == 273:
+        if gameEvt.key == arrows['up']:
             self.moveUp(gameEvt, gameScreen, borderHit)
         # case DOWN
-        elif gameEvt.key == 274:
+        elif gameEvt.key == arrows['down']:
             self.moveDown(gameEvt, gameScreen, borderHit)
         # case RIGHT
-        elif gameEvt.key == 275:
+        elif gameEvt.key == arrows['right']:
             self.moveRight(gameEvt, gameScreen, borderHit)
         # case LEFT
-        elif gameEvt.key == 276:
+        elif gameEvt.key == arrows['left']:
             self.moveLeft(gameEvt, gameScreen, borderHit)
 
     def moveUp(self, gameEvt, gameScreen, borderHit):

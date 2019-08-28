@@ -33,8 +33,6 @@ def main():
                     running = False
                 elif event.type is pygame.KEYDOWN:
                     if event.key is 113:
-                        #running = False
-                        # post event?
                         quitEvent = pygame.event.Event(pygame.QUIT)
                         pygame.event.post(quitEvent)
                     else:
