@@ -37,12 +37,16 @@ def main():
                         quitEvent = pygame.event.Event(pygame.QUIT)
                         pygame.event.post(quitEvent)
                     else:
+                        ''' Pretty naive version
                         innerEvents = []
                         while innerEvents == [] and pygame.KEYUP not in innerEvents:
                             emojiObject.moveMe(event, screen)
                             screen.drawBackground()
                             screen.drawObject(emojiObject)
-                            innerEvents = getEvents()
+                            innerEvents = getEvents()'''
+                        emojiObject.moveMe(event, screen)
+                        screen.drawBackground()
+                        screen.drawObject(emojiObject)
                 elif event.type == pygame.KEYUP:
                     print('up')
                 else:
